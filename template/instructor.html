@@ -1,0 +1,40 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Instructor</title>
+{% endblock title %}
+
+{% block css %}
+{% endblock css %}
+
+
+{% block body %}
+<body>
+    <div class="container">
+        <h1 class="mb-4">Instructors</h1>
+        
+        <ul class="list-group">
+            {% for instructor in instructors %}
+                <li class="list-group-item">{{ instructor }}</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Lectures</h2>
+        <ul>
+            {% for course in courses %}
+                <li>{{ course.name }}</li>
+                <ul>
+                    {% for lecture in lectures %}
+                        {% if lecture.course_id == course.id %}
+                            <li> Date : {{ lecture.date }} by {{ lecture.instructor }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+{% endblock body %}
+

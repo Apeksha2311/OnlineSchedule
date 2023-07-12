@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>admin</title>
+{% endblock title %}
+
+
+
+{% block css %}
+
+{% endblock css %}
+
+
+{% block body %}
+<body>
+    <div class="container">
+        <h1 class="mb-4">Admin Panel</h1>
+        
+        <h2>Instructors</h2>
+        <ul>
+            {% for instructor in instructors %}
+                <li>{{ instructor }} - {{instructor.department}} </li>
+            {% endfor %}
+        </ul>
+        
+        <h2>Courses</h2>
+        <ul>
+            {% for course in courses %}
+                <li>{{ course.name }}</li>
+                <ul>
+                    {% for lecture in lectures %}
+                        {% if lecture.course_id == course.id %}
+                        <li> Date : {{ lecture.date }} by {{ lecture.instructor }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        </ul>
+        
+        <a class="btn btn-primary" href="{% url 'add_course' %}">Add Course</a>
+        <a class="btn btn-primary" href="{% url 'assign_lecture' %}">Assign Lecture</a>
+        <a class="btn btn-primary" href="{% url 'add_instructor' %}">Add Instructor</a>
+    </div>
+</body>
+{% endblock body %}

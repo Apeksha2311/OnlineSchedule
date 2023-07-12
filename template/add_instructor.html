@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Add instructor Page</title>
+{% endblock title %}
+
+{% block css %}
+
+{% endblock css %}
+
+
+{% block body %}
+<body>
+    <div class="container">
+        <h1 class="mb-4">Add Instructors</h1>
+        
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input class="form-control" type="text" name="name" id="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="department">Department:</label>
+                <input class="form-control" type="text" name="department" id="department" required>
+            </div>
+            
+            <input class="btn btn-primary" type="submit" value="Add Instructor">
+        </form>
+        
+        <a href="{% url 'admin_panel' %}" class="mt-3">Back to Admin Panel</a>
+    </div>
+</body>
+{% endblock body %}
